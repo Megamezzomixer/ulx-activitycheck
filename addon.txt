@@ -1,0 +1,10 @@
+"AddonInfo"
+{
+	"name"				"ULX Activitycheck" 
+	"version"			"1.0"
+	"author_name"		"Megamezzomixer"
+	"author_url"		"megamezzomixer.de"
+	"info"				"Check playtime from users"
+}
+
+
