@@ -3,8 +3,9 @@
 function plydisconnect(ply)
 	local loggedGroups = {"owner", "headadmin", "superadmin", "admin", "trialadmin", "operator", "trialoperator"} -- Groups which will be logged
 	local deleteOldLogs = true -- It will delete logs from members which were in a valid group before, but aren't anymore.
+	local dateString = "%a - %d.%m.%Y - %H:%M:%S" -- Do NOT use any commas. It will mess up displaying the time and date correctly.
 	validGroup = false
-	sidaltered = string.Replace(string.lower(ply:SteamID()), ":", "-") -- We need to change the steamid for file save. : is restricted in the filename.
+	sidaltered = string.Replace(string.lower(ply:SteamID()), ":", "_") -- We need to change the steamid for file save. : is restricted in the filename.
 	
 	for i, v in pairs(loggedGroups) do
 		if ply:GetUserGroup() == v then
@@ -17,7 +18,7 @@ function plydisconnect(ply)
 	if validGroup then
 		if sessiontime >= 60 then
 			Timestamp = os.time()
-			currentDate = os.date( "%d.%m.%Y %H:%M:%S" , Timestamp )
+			currentDate = os.date( dateString , Timestamp )
 			file.Write("ulx/activitycheck/"..sidaltered..".txt", sessiontime .. "," .. currentDate)
 		end
 	else
